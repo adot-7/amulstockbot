@@ -16,7 +16,7 @@ curl_command = [
 # Run curl and capture output
 result = subprocess.run(curl_command, capture_output=True, text=True)
 
-print(result)
+print(result.returncode, result.stderr, result.stdout)
 
 # Convert output to JSON
 data = json.loads(result.stdout)['data']

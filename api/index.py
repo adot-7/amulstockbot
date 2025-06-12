@@ -16,4 +16,3 @@ def run():
 def home():
     return 'Flask is running.'
 
-handler=app

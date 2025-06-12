@@ -16,6 +16,8 @@ curl_command = [
 # Run curl and capture output
 result = subprocess.run(curl_command, capture_output=True, text=True)
 
+print(result)
+
 # Convert output to JSON
 data = json.loads(result.stdout)['data']
 interested = [i for i in data if "lassi" in i.get('alias')] #Gives list of dicts List[Dict]: [{'alias':'', 'q':}, {}]

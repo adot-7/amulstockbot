@@ -20,7 +20,7 @@ result = subprocess.run(curl_command, capture_output=True, text=True)
 data = json.loads(result.stdout)['data']
 interested = [i for i in data if "lassi" in i.get('alias')] #Gives list of dicts List[Dict]: [{'alias':'', 'q':}, {}]
 quantities = [{'quantity': i.get('inventory_quantity'), 'item': ' '.join(i.get('alias').title().split('-')[3:5])} for i in interested]
-
+print(quantities)
 
 load_dotenv()
 account_sid = os.getenv("ACCOUNT_SID")
@@ -40,8 +40,8 @@ for quantity in quantities:
             content_variables='{{"1":"{d}", "2":"{t}"}}'.format(d=first, t=second),
             to=f'whatsapp:{os.getenv("MY_PHONE")}'
         )
-        print(message.sid)
+        print(f"Message Sent for {quantity.get('item')}.")
 
-        
-# Use the data
-print(quantities)
+#Need a better implementation for running the script cause if the stock stays above 100 for more than one hour and we have already got the notification then it gets annoying. 
+    
+
